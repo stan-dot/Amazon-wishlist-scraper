@@ -4,7 +4,6 @@ import click
 from bs4 import BeautifulSoup
 
 # launch different file depending on the argument
-name = 'fiction'
 
 
 # process the whole string 
@@ -18,13 +17,19 @@ def process_string(s:str)->(list[str]):
       output_list.append(test_print.strip())
   return output_list
 
-
-
-
-# read file into memory as a string
-with open(f'data/{name}.html') as f:
-  contents:str = f.read()
-  titles:list[str]=process_string(contents)
-  print(titles)
+def process_file(name:str)-> None:
+  print('processing file{name}')
+  with open(f'data/{name}.html') as f:
+    contents:str = f.read()
+    titles:list[str]=process_string(contents)
+    print(titles)
+    joint_list:str = '\n'.join(titles)
+    new_file = open(f'output/{name}.txt', 'w')
+    new_file.write(joint_list)
+    new_file.close()
 
 # save into output
+
+name = 'fiction'
+process_file(name)
+print('exiting...')
