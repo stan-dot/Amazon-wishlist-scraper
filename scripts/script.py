@@ -6,8 +6,6 @@ import re
 
 name = 'fiction'
 
-
-
 # read file into memory as a string
 
 # process the whole string 
